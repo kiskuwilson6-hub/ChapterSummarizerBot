@@ -1,5 +1,5 @@
 name: Run Bot
-on: workflow_dispatch:
+on: workflow_dispatch
 jobs:
   bot:
     runs-on: ubuntu-latest
