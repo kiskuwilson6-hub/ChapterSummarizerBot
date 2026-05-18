@@ -1,23 +1,26 @@
-name: Run Bot
+
+name: Run ChapterSummarizerBot
+
 on:
+  schedule:
+    - cron: '*/30 * * * *'  # Runs every 30 minutes
   workflow_dispatch:
 
 jobs:
   bot:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
+      - uses: actions/checkout@v4
+      
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
+      
       - name: Install dependencies
         run: |
-          pip install python-telegram-bot==20.7 openai==1.12.0 requests
-
+          pip install python-telegram-bot==20.7 openai==1.12.0 requests duckduckgo-search beautifulsoup4
+      
       - name: Run bot
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
